@@ -3,7 +3,7 @@ See the following sections for examples of using Lambda functions with CloudFron
 
 
 
-# Scenario
+## Scenario
 
 You have a website, static content served by an S3 bucket. Content is cacehed by AWS CloudFront CDN.
 
@@ -11,7 +11,7 @@ You can use the following example if you want to test two different versions of 
 
 Each version of the website is served by a separate URL(e.g. separate S3 bucket). They are configured as different Origins in the CloudFront.
 
-# How it works
+## How it works
 We want to keep the served version stable with a cookie,  Origin Vaule = B. As content is served by S3 bucket the cookie can't be added by the server. So, on the first request by a new client, we randomly decide a version.
 
 Recap the scenario:
@@ -22,18 +22,19 @@ Recap the scenario:
 4. CloudFront sents the request to the chosen origin.
 5. The object is returned to CloudFront from S3, served to the viewer and caches, if applicable.
 
+
 2. Because doesn't contain the cookie, the request is forwarded to the Origin.
 3. The function looks for cookie. Not finding it, it will randomly decide which version to send the client.
 
 
-
-# S3
+##Configuration 
+### S3
 Create two S3 buckets as origins (e.g. cfbucket01 and cfbucket02) a CloudFront distribution and an AWS Lambda function that routes a user's request to one of the two S3 origins based on a cookie. 
 
 Upload a basic page.html file that identifies each bucket when I navigate to it. 
 
 
-# Granting the Origin Access Identity Permission to Read Files in S3 bucket
+### Granting the Origin Access Identity Permission to Read Files in S3 bucket
 
 When you create or update a distribution, you can add an origin access identity and automatically update the bucket policy to give the origin access identity permission to access your bucket. Alternatively, you can choose to manually change the bucket policy or change ACLs, which control permissions on individual files in your bucket.
 
@@ -44,11 +45,11 @@ Users can't use Amazon S3 URLs to access your files.
 
 https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#private-content-creating-oai-console
 
-# CloudFront
+### CloudFront
 
 
 
-# Lambda@Edge
+### Lambda@Edge
 
 Copy the following code into the Function code box and ensure Node.js 6.10 Runtime and index.handler are selected. The bucket names in the following code need to be replaced with your origin names.
 
