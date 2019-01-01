@@ -12,7 +12,7 @@ You can use the following example if you want to test two different versions of 
 Each version of the website is served by a separate URL(e.g. separate S3 bucket). They are configured as different Origins in the CloudFront.
 
 ## How it works
-We want to keep the served version stable with a cookie,  Origin Vaule = B. As content is served by S3 bucket the cookie can't be added by the server. So, on the first request by a new client, we randomly decide a version.
+We want to keep the served version stable with a cookie,  Origin `Vaule = B`. As content is served by S3 bucket the cookie can't be added by the server. So, on the first request by a new client, we randomly decide a version.
 
 Recap the scenario:
 1. Client access on the websit. The brower request is directed to the closest CloudFront Edge location. 
@@ -29,7 +29,7 @@ Recap the scenario:
 
 ## Configuration 
 ### S3
-Create two S3 buckets as origins (e.g. cfbucket01 and cfbucket02) a CloudFront distribution and an AWS Lambda function that routes a user's request to one of the two S3 origins based on a cookie. 
+Create two S3 buckets as origins (e.g. `cfbucket01` and `cfbucket02`) a CloudFront distribution and an AWS Lambda function that routes a user's request to one of the two S3 origins based on a cookie. 
 
 Upload a basic page.html file that identifies each bucket when I navigate to it. 
 
