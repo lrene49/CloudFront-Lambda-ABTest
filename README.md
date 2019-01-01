@@ -27,7 +27,7 @@ Recap the scenario:
 3. The function looks for cookie. Not finding it, it will randomly decide which version to send the client.
 
 
-##Configuration 
+## Configuration 
 ### S3
 Create two S3 buckets as origins (e.g. cfbucket01 and cfbucket02) a CloudFront distribution and an AWS Lambda function that routes a user's request to one of the two S3 origins based on a cookie. 
 
